@@ -2,6 +2,8 @@
   "name": "project_03",
   "version": "0.1.0",
   "private": true,
+  "keywords": [],
+  "main": "src/index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -36,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
   }
 }
