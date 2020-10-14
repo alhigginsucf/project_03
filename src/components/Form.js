@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 
 function Form(props) {
-    const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        props.addTask(name);
-        setName("")
-    }
-    function handleChange(e) {
-        setName(e.target.value);
-      }
+  function handleChange(e) {
+    setName(e.target.value);
+  }
 
-    return (
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.addTask(name);
+    setName("");
+  }
+  return (
     <form onSubmit={handleSubmit}>
       <h2 className="label-wrapper">
         <label htmlFor="new-todo-input" className="label__lg">
-          What needs to be done?
+          Generate A Todo!
         </label>
       </h2>
       <input
@@ -29,7 +29,7 @@ function Form(props) {
         onChange={handleChange}
       />
       <button type="submit" className="btn btn__primary btn__lg">
-        Add
+        Add Something To List
       </button>
     </form>
   );
