@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom'
+
 
 const DATA = [
   { id: "todo-0", name: "wake up", completed: true },
@@ -9,6 +11,9 @@ const DATA = [
   { id: "todo-2", name: "go to work", completed: false }
 ];
 
-ReactDOM.render(<App tasks={DATA} />,
-   document.getElementById("root"));
+ReactDOM.render(
+<Router>
+<App tasks={DATA} />
+</Router>,
+document.getElementById("root"));
 
