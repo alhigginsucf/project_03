@@ -3,6 +3,7 @@ import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
 import { nanoid } from "nanoid";
+import { Navbar, Nav, FormControl, Button } from 'react-bootstrap';
 
 const FILTER_MAP = {
   All: () => true,
@@ -71,6 +72,15 @@ function App(props) {
   
 
   return (
+    <>
+  <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link href="#home">Home</Nav.Link>
+      <Nav.Link href="#contact">Contact</Nav.Link>
+      <Nav.Link href="#pricing">Pricing</Nav.Link>
+    </Nav>
+  </Navbar>
     <div className="todoapp stack-large">
       <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
@@ -85,6 +95,7 @@ function App(props) {
         {taskList}
       </ul>
     </div>
+    </>
   );
 }
 

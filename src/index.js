@@ -9,5 +9,6 @@ const DATA = [
   { id: "todo-2", name: "go to work", completed: false }
 ];
 
-ReactDOM.render(<App tasks={DATA} />, document.getElementById("root"));
+ReactDOM.render(<App tasks={DATA} />,
+   document.getElementById("root"));
 
