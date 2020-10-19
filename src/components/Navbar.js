@@ -1,17 +1,17 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 export default function Navibar() {
   return (
-    <div>
+    <nav>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">Task Tracker!</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#contact">Contact</Nav.Link>
-          <Nav.Link href="#about">About</Nav.Link>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/contact" className="nav-link">Contact</Link>
         </Nav>
       </Navbar>
-    </div>
+    </nav>
   );
 }

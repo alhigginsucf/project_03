@@ -1,95 +1,19 @@
-import React, { useState } from "react";
-import Form from "./components/Form";
-import FilterButton from "./components/FilterButton";
-import Todo from "./components/Todo";
-import { nanoid } from "nanoid";
+import React from "react";
 import Navibar from './components/Navbar';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Contact from './components/Contact';
+import Home from './components/Home';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-
-
-const FILTER_MAP = {
-  All: () => true,
-  Active: (task) => !task.completed,
-  Completed: (task) => task.completed,
-};
-const FILTER_NAMES = Object.keys(FILTER_MAP);
-
-function App(props) {
-  const [tasks, setTasks] = useState(props.tasks);
-  const [filter, setFilter] = useState("All");
-  function addTask(name) {
-    const newTask = { id: "todo-" + nanoid(), name: name, completed: false };
-    setTasks([...tasks, newTask]);
-  }
-  function toggleTaskCompleted(id) {
-    const updatedTasks = tasks.map((task) => {
-      // if this task has the same ID as the edited task
-      if (id === task.id) {
-        // use object spread to make a new object
-        // whose `completed` prop has been inverted
-        return { ...task, completed: !task.completed };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
-  }
-  function deleteTask(id) {
-    const remainingTasks = tasks.filter((task) => id !== task.id);
-    setTasks(remainingTasks);
-  }
-  function editTask(id, newName) {
-    const editedTaskList = tasks.map((task) => {
-      // if this task has the same ID as the edited task
-      if (id === task.id) {
-        //
-        return { ...task, name: newName };
-      }
-      return task;
-    });
-    setTasks(editedTaskList);
-  }
-  const taskList = tasks
-    .filter(FILTER_MAP[filter])
-    .map((task) => (
-      <Todo
-        id={task.id}
-        name={task.name}
-        completed={task.completed}
-        key={task.id}
-        toggleTaskCompleted={toggleTaskCompleted}
-        deleteTask={deleteTask}
-        editTask={editTask}
-      />
-    ));
-  const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
-  const headingText = `${taskList.length} ${tasksNoun} remaining`;
-  const filterList = FILTER_NAMES.map((name) => (
-    <FilterButton
-      key={name}
-      name={name}
-      isPressed={name === filter}
-      setFilter={setFilter}
-    />
-  ));
-
+export default function App(props) {
   return (
-    <>
-   
-     <Navibar /> 
-      <div className="todoapp stack-large">
-        <Form addTask={addTask} />
-        <div className="filters btn-group stack-exception">{filterList}</div>
-        <h2 id="list-heading">{headingText}</h2>
-        <ul
-          className="todo-list stack-large stack-exception"
-          aria-labelledby="list-heading"
-        >
-          {taskList}
-        </ul>
-      </div>
-    </>
-  );
+    <div>
+      <Router>
+        <Navibar />
+        <Switch>
+          <Route exact path="/" render={()=>(<Home tasks={props.tasks} />)} />
+          <Route path="/contact" component={Contact} />
+        </Switch>
+      </Router>
+    </div>
+  )
 }
-
-export default App;
